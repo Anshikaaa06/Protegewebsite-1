@@ -1,124 +1,106 @@
- body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #ececec, #9fd3c7);
-    color: #142d4c;
-    transition: background 0.5s ease;
+:root {
+  --primary-color: #9fd3c7;
+  --secondary-color: #3498db;
+  --text-color: #142d4c;
+  --transition-speed: 0.3s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--primary-color);
+}
+
+.events-section {
+  padding: 4rem 2rem;
+}
+
+h1 {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(50px);
+  opacity: 0;
+  animation: slideUp 0.5s ease forwards;
+}
+
+.event-poster {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.event-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed);
+}
+
+.event-overlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: rgba(44, 62, 80, 0.9);
+  color: var(--text-color);
+  transition: bottom var(--transition-speed);
+}
+
+.event-card:hover .event-overlay {
+  bottom: 0;
+}
+
+.event-card:hover .event-poster img {
+  transform: scale(1.1);
+}
+
+.event-description {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
   }
-  section {
-    padding: 80px 20px;
-    animation: fadeIn 1s ease-in;
-  }
-  
-  .carousel, .grid, .team-members {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    scroll-behavior: smooth;
-  }
-  
-  .carousel div, .grid div, .team-members div {
-    margin: 10px;
-    padding: 20px;
-    background-color: #385170;
-    border-radius: 15px;
-    min-width: 250px;
-    color: #ececec;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .carousel div:hover, .grid div:hover, .team-members div:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  }
-  
- button {
-    background-color: #9fd3c7;
-    color: #142d4c;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s, transform 0.3s;
-  }
-  
-  button:hover {
-    background-color: #385170;
-    color: #ececec;
-    transform: scale(1.05);
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
+}
+
+@keyframes slideUp {
+  to {
       opacity: 1;
       transform: translateY(0);
-    }
   }
-  
-  /* Scrollbar customization */
-  ::-webkit-scrollbar {
-    height: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #ececec;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #385170;
-    border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #142d4c;
-  }
-
-  .event-item {
-    width: 250px; /* Keep the event box size fixed */
-    height: auto;  
-    text-align: center;
-    background-color: #385170;
-    border-radius: 15px;
-    padding: 20px;
-    color: #ececec;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.event-item img {
-    width: 100%;       
-    max-height: 150px; 
-    object-fit: cover;  
-    border-radius: 10px;
-}
+@media (max-width: 768px) {
+  .events-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 
-
-
-/* Button Styling */
-.button, button {
-  background-color: #9fd3c7;
-  color: #142d4c;
-  border: none;
-  padding: 5px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
-  text-decoration: none;
-  display: inline-block;
-  transition: background 0.3s, transform 0.3s;
-  text-align: center;
-}
-
-/* Hover Effect */
-.button:hover, button:hover {
-  background-color: #385170;
-  color: #ececec;
-  transform: scale(1.05);
+  .event-poster {
+      height: 300px;
+  }
 }
